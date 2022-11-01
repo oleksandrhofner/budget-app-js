@@ -4,13 +4,72 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Budgeting app JavaScript</title>
+    <title>Розрахунок Бюджету</title>
+    <link rel="stylesheet" href="./css/">
 </head>
 <body>
     <header>
         <div class="menu-container">
-            <h3>Budget app</h3>
+            <h3>Сторінка розрахунку бюджету</h3>
+            <ul>
+                <li><a href="./index.html">Бюджет</a></li>
+                <li><a href="./html/collect.html">Збір</a></li>
+                <li><a href="./html/analytic.html">Аналітика</a></li>
+            </ul>
+        </div>
+        <div class="info-title" id="info-title">
+            <div class="budget-info">
+                <h3>Дохід</h3>
+                <span class="budget-icon"></span>
+                <h3 class="budget" id="budget">
+                    <span>$</span>
+                    <span id="budget-amount">0</span>
+                </h3>
+            </div>
+            <div class="expenses-info">
+                <h3>Витрати</h3>
+                <span class="expenses-icon"></span>
+                <h3 class="expenses" id="expenses">
+                    <span>$</span>
+                    <span id="budget-expenses">0</span>
+                </h3>
+            </div>
+            <div class="balance-info">
+                <h3>Залишок на рахунку</h3>
+                <span class="balance-icon"></span>
+                <h3 class="balance" id="balance">
+                    <span>$</span>
+                    <span id="budget-balance">0</span>
+                </h3>
+            </div>
         </div>
     </header>
+    <main>
+        <form id="budget-form" class="budget-form">
+            <h5>Введіть свій бюджет</h5>
+            <div class="form-input">
+                <input type="number" class="budget-input" id="budget-input">
+            </div>
+            <button type="submit" class="budget-submit" id="budget-submit">Ввести дані</button>
+        </form>
+        <form id="expense-form" class="expense-form">
+            <h5>Ведіть назву ваших витрат</h5>
+            <div class="form-group">
+                <input type="text" class="expense-input" id="expense-input">
+            </div>
+            <h5>Введіть суму витрат</h5>
+            <div class="form-group">
+                <input type="number" class="expense-input" id="amount-input">
+            </div>
+            <button type="submit" class="expense-submit" id="expense-submit">Додати витрати</button>
+        </form>
+        <div class="expense-list" id="expense-list">
+            <div class="expense-list-info">
+                <h5>Назва витрат</h5>
+                <h5>Сума витрат</h5>
+            </div>
+        </div>
+    </main>
+    <script src="./js/budget.js"></script>
 </body>
 </html>
