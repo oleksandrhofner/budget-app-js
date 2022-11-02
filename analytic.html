@@ -4,9 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Аналітика</title>
 </head>
 <body>
+
+    <header>
+        <div class="menu-container">
+            <h3>Сторінка аналітики</h3>
+            <ul>
+                <li><a href="./index.html">Бюджет</a></li>
+                <li><a href="./collect.html">Збір</a></li>
+                <li><a href="./analytic.html">Аналітика</a></li>
+            </ul>
+        </div>
+    </header>
     <h1>Chart.js</h1>
+    <canvas id="myChart" width="200" height="200"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script>
+  const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data : {
+  labels: [
+    'Витрати',
+    'Дохід',
+    'Збір'
+  ],
+  datasets: [{
+    label: 'Аналітика бюджету',
+    data: [100, 150, 40],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(50,205,50)',
+      'rgb(65,105,225)'
+    ],
+    hoverOffset: 4,
+  }]
+}});
+    </script>
+   
 </body>
 </html>
