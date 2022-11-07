@@ -102,36 +102,15 @@
         <h3 id="analytic-title">Аналітика</h3>
         <h1>Chart.js</h1>
 
-      <canvas id="myChart" width="200" height="200"></canvas>
+      <div class="chart-container">
+        <canvas class="myChart" id="myChart"></canvas>
+      </div>
     </div>
 <!-- Кінець сторінки Аналітика -->
 
     </main>
     <!-- cdn файл для підключення бібліотеки Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-    <script>
-  const ctx = document.getElementById('myChart').getContext('2d');
-const myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data : {
-  labels: [
-    'Витрати',
-    'Дохід',
-    'Збір'
-  ],
-  datasets: [{
-    label: 'Аналітика бюджету',
-    data: [100, 150, 40],
-    backgroundColor: [
-      'rgb(255, 99, 132)',
-      'rgb(50,205,50)',
-      'rgb(65,105,225)'
-    ],
-    hoverOffset: 4,
-  }]
-}});
-    </script>
-
     <script src="./js/budget.js"></script>
 </body>
 </html>

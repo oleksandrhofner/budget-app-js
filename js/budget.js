@@ -163,3 +163,29 @@ class UI {
   document.addEventListener('DOMContentLoaded', function(){
     eventListeners();
   })
+
+
+
+
+
+  // Chart.js
+  const ctx = document.getElementById('myChart').getContext('2d');
+  const myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data : {
+    labels: [
+      'Витрати',
+      'Дохід',
+      'Збір'
+    ],
+    datasets: [{
+      label: 'Аналітика бюджету',
+      data: [100, 150, 40],
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(50,205,50)',
+        'rgb(65,105,225)'
+      ],
+      hoverOffset: 4,
+    }]
+  }});
