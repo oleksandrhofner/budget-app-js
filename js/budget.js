@@ -36,16 +36,7 @@ class UI {
       const expense = this.totalExpense();
       const total = parseInt(this.budgetAmount.textContent) - expense;
       this.balanceAmount.textContent = total;
-      if(total < 0){
-        this.balance.classList.remove('showGreen', 'showBlack');
-        this.balance.classList.add('showRed');
-      } else if(total > 0){
-        this.balance.classList.remove('showRed', 'showBlack');
-        this.balance.classList.add('showGreen');
-      } else if(total === 0){
-        this.balance.classList.remove('showRed', 'showGreen');
-        this.balance.classList.add('showBlack');
-      }
+    
     }
     //submit expense form
     submitExpenseForm(){
@@ -79,22 +70,15 @@ class UI {
     //add expense
     addExpense(expense){
       const div = document.createElement('div');
-      div.classList.add('expense');
-      div.innerHTML = `<div class="expense-item d-flex justify-content-between align-items-baseline">
-  
-      <h6 class="expense-title mb-0 text-uppercase list-item">- ${expense.title}</h6>
-      <h5 class="expense-amount mb-0 list-item">$${expense.amount}</h5>
-  
-      <div class="expense-icons list-item">
-  
-       <a href="#" class="edit-icon mx-2" data-id="${expense.id}">
-        <i class="fas fa-edit"></i>
-       </a>
-       <a href="#" class="delete-icon" data-id="${expense.id}">
-        <i class="fas fa-trash"></i>
-       </a>
+      div.classList.add('expense-list');
+      div.innerHTML = `
+      <div class="expense-item-title"> 
+      <h5 class="expense-title list-item">- ${expense.title}</h5>
       </div>
-     </div`;
+      <div class="expense-title-amount">
+      <h5 class="expense-amount  list-item">$${expense.amount}</h5>
+      </div>
+      `;
      this.expenseList.appendChild(div);
     }
   

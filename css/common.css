@@ -2,9 +2,15 @@ ul {
     list-style: none;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    position:static;
 
 }
 a {
     text-decoration: none;
     padding: 0 10px;
 }
+
+/* * {
+    border: 1px solid green;
+} */
