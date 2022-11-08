@@ -9,8 +9,13 @@
     justify-content: space-around;
 }
 
+.collect-container {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
 .expense-container {
-    margin: 50px auto;
+    margin: auto;
     width: 400px;
     display: flex;
     justify-content: space-between;
