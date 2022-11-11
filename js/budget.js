@@ -8,13 +8,14 @@ class UI {
       this.balanceAmount = document.getElementById("balance-amount");
       this.expenseForm = document.getElementById("expense-form");
       this.expenseInput = document.getElementById("expense-input");
-      this.amountInput = document.getElementById("amount-input");
+      this.amountInput = document.getElementById("expenseAmount-input");
       this.expenseList = document.getElementById("expense-list");
       this.itemList = [];
       this.itemID = 0;
-    //   this.collectForm = document.getElementById("collect-form");
-    //   this.collectInput = document.getElementById("collect-input");
-    //   this.collectAmountInput = document.getElementById("collect-amount-input");
+      this.collectForm = document.getElementById("collect-form");
+      this.collectInput = document.getElementById("collect-input");
+      this.collectAmountInput = document.getElementById("collectAmount-input");
+      this.collectList = document.getElementById("collect-list");
     }
   
     //submit budget method
@@ -78,47 +79,40 @@ class UI {
      this.expenseList.appendChild(div);
     }
   
+// submit collect method
+    submitCollectForm(){
+      const collectValue = this.collectInput.value;
+      const collectAmountValue = this.collectAmountInput.value;
+      if (collectValue === '' || collectAmountValue === '' || collectAmountValue < 0) {
+        alert("Введіть правильне число!");
+      
+      } else {
+        let collectAmount = parseInt(collectAmountValue);
+        this.collectInput = '';
+        this.collectAmountInput = '';
+        let collect = {
+          title: collectValue,
+          amount: collectAmount
+        }
+        this.addCollect(collect)
+      }
+      
+    }
+    // add title and value for collect
+    addCollect(collect) {
+      const div = document.createElement('div');
+      div.classList.add('collect');
+      div.innerHTML = `
+      
+      <h3>Мета</h3><span>-</span><h3>${collect.title}</h3
+      <span>₴</span>
+      <span id="collectAmount-input">${collect.amount}</span>
+      
+      `;
+      this.collectList.appendChild(div);
+    }
 
-    // submit collect form
-    // submitCollectForm(){
-    //   const collectValue = this.collectInput.value;
-    //   const collectAmountValue = this.collectAmountInput.value;
-    //   if(collectValue === '' || collectAmountValue === '' || collectAmountValue < 0){
-    //     this.expenseFeedback.classList.add('showItem');
-    //     this.expenseFeedback.innerHTML = `<p>values cannot be empty or negative</p>`;
-        
-    //   } else {
-    //     let collectAmount = parseInt(collectAmountValue);
-    //     this.collectInput.value = '';
-    //     this.collectAmountInput.value = '';
-  
-    //     let collect = {
-    //       id: this.itemID,
-    //       title: collectValue,
-    //       amount: collectAmount
-    //     }
-    //     this.itemID++;
-    //     this.itemList.push(collect);
-    //     this.addCollect(collect);
-    //     this.showBalance();
-  
-    //   }
-    
-    // }
-    // //add collect
-    // addCollect(collect){
-    //   const div = document.createElement('div');
-    //   div.classList.add('collect-list');
-    //   div.innerHTML = `
-    //   <div class="collect-item-title"> 
-    //   <h5 class="collect-title list-item">- ${collect.title}</h5>
-    //   </div>
-    //   <div class="collect-title-amount">
-    //   <h5 class="collect-amount  list-item">$${collect.amount}</h5>
-    //   </div>
-    //   `;
-    //  this.collectList.appendChild(div);
-    // }
+
     
     //total expense
     totalExpense(){
@@ -173,6 +167,8 @@ class UI {
     const budgetForm = document.getElementById('budget-form');
     const expenseForm = document.getElementById('expense-form');
     const expenseList = document.getElementById('expense-list');
+    const collectForm = document.getElementById('collect-form');
+
   
     //new instance of UI Class
     const ui = new UI();
@@ -188,18 +184,18 @@ class UI {
       ui.submitExpenseForm();
   
     })
+    // collect from submit
+    collectForm.addEventListener('submit',function(event){
+      event.preventDefault();
+      ui.submitCollectForm();
+    })
   }
   
   document.addEventListener('DOMContentLoaded', function(){
     eventListeners();
   })
 
-
-
-
-
   // Chart.js
-  let budgetAmountAnalytic = UI.budgetAmount;
   let AnalyticAmount = document.getElementById('button-analytic');
     AnalyticAmount.addEventListener('click', function(){
       let labelName = ['Дохід','Витрати','Збір'];

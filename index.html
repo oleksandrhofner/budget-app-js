@@ -62,32 +62,31 @@
             </div>
             <h5>Введіть суму витрат</h5>
             <div class="form-group">
-                <input type="number" class="expense-input" id="amount-input">
+                <input type="number" class="expense-input" id="expenseAmount-input">
             </div>
             <button type="submit" class="expense-submit" id="expense-submit">Додати витрати</button>
         </form>
-               
        </div>
 
     <!-- Кінець сторінки розрахунку бюджету -->
 <!-- Початок сторінки Збір -->
 <h3 id="collect-title">Збір</h3>
-    <div class="form-container">
-        <form id="expense-form" class="expense-form">
-            <h5>Мету</h5>
-            <div class="form-group">
-                <input type="text" class="expense-input" id="expense-input">
-            </div>
-            <h5>Введіть суму мети</h5>
-            <div class="form-group">
-                <input type="number" class="expense-input" id="amount-input">
-            </div>
-            <button type="submit" class="expense-submit" id="expense-submit">Додати витрати</button>
-        </form>
-        <div class="expense-list" id="expense-list">
-
+<div class="collect-form">
+    <form id="collect-form" class="collect-form">
+        <h5>Мета</h5>
+        <div class="form-group">
+            <input type="text" class="collect-input" id="collect-input">
         </div>
+        <h5>Введіть суму мети</h5>
+        <div class="form-group">
+            <input type="number" class="collect-input" id="collectAmount-input">
+        </div>
+        <button type="submit" class="collect-submit" id="collect-submit">Додати збір</button>
+    </form>
+    <div class="collect-list" id="collect-list">
+       
     </div>
+</div>
 <!-- Кінець сторінки Збір -->
 <!-- Початок сторінки Аналітика -->
     <div class="analytic-container">
