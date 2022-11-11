@@ -12,18 +12,17 @@ class UI {
       this.expenseList = document.getElementById("expense-list");
       this.itemList = [];
       this.itemID = 0;
+    //   this.collectForm = document.getElementById("collect-form");
+    //   this.collectInput = document.getElementById("collect-input");
+    //   this.collectAmountInput = document.getElementById("collect-amount-input");
     }
   
     //submit budget method
     submitBudgetForm(){
         const value = this.budgetInput.value;
         if(value === '' || value < 0){
-          this.budgetFeedback.classList.add('showItem');
-          this.budgetFeedback.innerHTML = `<p>value cannot be empty or negative</p>`;
-          const self = this;
-          setTimeout(function(){
-            self.budgetFeedback.classList.remove('showItem');
-          }, 3000);
+         console.log('Number can`t be negative or string');
+      
         } else {
           this.budgetAmount.textContent = value;
           this.budgetInput.value = '';
@@ -46,9 +45,6 @@ class UI {
         this.expenseFeedback.classList.add('showItem');
         this.expenseFeedback.innerHTML = `<p>values cannot be empty or negative</p>`;
         const self = this;
-        setTimeout(function(){
-          self.expenseFeedback.classList.remove('showItem');
-        }, 3000)
       } else {
         let amount = parseInt(amountValue);
         this.expenseInput.value = '';
@@ -65,8 +61,8 @@ class UI {
         this.showBalance();
   
       }
+    
     }
-  
     //add expense
     addExpense(expense){
       const div = document.createElement('div');
@@ -82,6 +78,48 @@ class UI {
      this.expenseList.appendChild(div);
     }
   
+
+    // submit collect form
+    // submitCollectForm(){
+    //   const collectValue = this.collectInput.value;
+    //   const collectAmountValue = this.collectAmountInput.value;
+    //   if(collectValue === '' || collectAmountValue === '' || collectAmountValue < 0){
+    //     this.expenseFeedback.classList.add('showItem');
+    //     this.expenseFeedback.innerHTML = `<p>values cannot be empty or negative</p>`;
+        
+    //   } else {
+    //     let collectAmount = parseInt(collectAmountValue);
+    //     this.collectInput.value = '';
+    //     this.collectAmountInput.value = '';
+  
+    //     let collect = {
+    //       id: this.itemID,
+    //       title: collectValue,
+    //       amount: collectAmount
+    //     }
+    //     this.itemID++;
+    //     this.itemList.push(collect);
+    //     this.addCollect(collect);
+    //     this.showBalance();
+  
+    //   }
+    
+    // }
+    // //add collect
+    // addCollect(collect){
+    //   const div = document.createElement('div');
+    //   div.classList.add('collect-list');
+    //   div.innerHTML = `
+    //   <div class="collect-item-title"> 
+    //   <h5 class="collect-title list-item">- ${collect.title}</h5>
+    //   </div>
+    //   <div class="collect-title-amount">
+    //   <h5 class="collect-amount  list-item">$${collect.amount}</h5>
+    //   </div>
+    //   `;
+    //  this.collectList.appendChild(div);
+    // }
+    
     //total expense
     totalExpense(){
       let total = 0;
@@ -94,7 +132,7 @@ class UI {
       this.expenseAmount.textContent = total;
       return total;
     }
-  
+    
     //edit expense
     editExpense(element){
       let id = parseInt(element.dataset.id);
@@ -150,14 +188,6 @@ class UI {
       ui.submitExpenseForm();
   
     })
-    //expense list submit
-    expenseList.addEventListener('click', function(event){
-      if (event.target.parentElement.classList.contains('edit-icon')){
-        ui.editExpense(event.target.parentElement);
-      }else if (event.target.parentElement.classList.contains('delete-icon')){
-        ui.deleteExpense(event.target.parentElement);
-      }
-    })
   }
   
   document.addEventListener('DOMContentLoaded', function(){
@@ -169,23 +199,27 @@ class UI {
 
 
   // Chart.js
-  const ctx = document.getElementById('myChart').getContext('2d');
-  const myChart = new Chart(ctx, {
-      type: 'doughnut',
-      data : {
-    labels: [
-      'Витрати',
-      'Дохід',
-      'Збір'
-    ],
-    datasets: [{
-      label: 'Аналітика бюджету',
-      data: [100, 150, 40],
-      backgroundColor: [
-        'rgb(255, 99, 132)',
-        'rgb(50,205,50)',
-        'rgb(65,105,225)'
-      ],
-      hoverOffset: 4,
-    }]
-  }});
+  let budgetAmountAnalytic = UI.budgetAmount;
+  let AnalyticAmount = document.getElementById('button-analytic');
+    AnalyticAmount.addEventListener('click', function(){
+      let labelName = ['Дохід','Витрати','Збір'];
+      let dataAmount = [150,100,40];
+      let ctx = document.getElementById('myChart').getContext('2d');
+      let myChart = new Chart(ctx, {
+          type: 'doughnut',
+          data : {
+        labels: labelName,
+        datasets: [{
+          label: 'Аналітика бюджету',
+          data: dataAmount,
+          backgroundColor: [
+            'rgb(50,205,50)',
+            'rgb(255, 99, 132)',
+            'rgb(65,105,225)'
+          ],
+          hoverOffset: 4,
+        }]
+      }});
+    });
+
+  

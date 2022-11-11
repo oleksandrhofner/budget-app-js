@@ -11,6 +11,7 @@ a {
     padding: 0 10px;
 }
 
-/* * {
-    border: 1px solid green;
-} */
+* {
+    scroll-behavior: smooth;
+    /* border: 1px solid green; */
+}

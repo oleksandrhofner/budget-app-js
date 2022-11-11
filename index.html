@@ -46,7 +46,7 @@
             </div>
         </div>
     </header>
-    <main>
+    
        <div class="form-container">
         <form id="budget-form" class="budget-form">
             <h5>Введіть свій бюджет</h5>
@@ -66,39 +66,32 @@
             </div>
             <button type="submit" class="expense-submit" id="expense-submit">Додати витрати</button>
         </form>
+               
        </div>
 
     <!-- Кінець сторінки розрахунку бюджету -->
 <!-- Початок сторінки Збір -->
 <h3 id="collect-title">Збір</h3>
-    <div class="collect-container" id="collect-container">
-        <div class="collect-form">
-            <form class="collect-form-group" id="collect-form">
-                <h5>Введіть мету збору</h5>
-                <div class="form-group">
-                    <input type="text" class="collect-input" id="collect-input">
-                </div>
-                <h5>Введіть бажану суму для збору </h5>
-                <div class="form-group">
-                    <input type="number" class="collect-input" id="amount-input">
-                </div>
-                <button type="submit" class="collect-submit" id="collect-submit">Додати збір</button>
-            </form>
-        </div>
-        <div class="collect-info">
-            <h3>Мета</h3>
-            <span class="collect-icon"></span>
-            <h3 class="collect" id="collect">
-                <span>₴</span>
-                <span id="collect-amount">0</span>
-            </h3>
+    <div class="form-container">
+        <form id="expense-form" class="expense-form">
+            <h5>Мету</h5>
+            <div class="form-group">
+                <input type="text" class="expense-input" id="expense-input">
+            </div>
+            <h5>Введіть суму мети</h5>
+            <div class="form-group">
+                <input type="number" class="expense-input" id="amount-input">
+            </div>
+            <button type="submit" class="expense-submit" id="expense-submit">Додати витрати</button>
+        </form>
+        <div class="expense-list" id="expense-list">
+
         </div>
     </div>
 <!-- Кінець сторінки Збір -->
 <!-- Початок сторінки Аналітика -->
     <div class="analytic-container">
         <h3 id="analytic-title">Аналітика</h3>
-       
             <div class="expense-container" >
                 <div class="expense-list-info">
                     <h5>Назва витрат</h5>
@@ -106,18 +99,23 @@
             <div class="expense-list-info"></div>
                 <h5>Сума витрат</h5>
             </div>
-            
-    
+
     <div class="expense-list" id="expense-list">    
     </div>
     </div>
       <div class="chart-container">
+        <button class="button-analytic" id="button-analytic">Показати аналітику</button>
         <canvas class="myChart" id="myChart"></canvas>
       </div>
     </div>
 <!-- Кінець сторінки Аналітика -->
 
     </main>
+    <footer class="footer-container">
+        <div class="footer-info">
+            <span>2022</span>
+        </div>
+    </footer>
     <!-- cdn файл для підключення бібліотеки Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script src="./js/budget.js"></script>
