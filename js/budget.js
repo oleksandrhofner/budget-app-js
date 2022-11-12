@@ -103,11 +103,10 @@ class UI {
       const div = document.createElement('div');
       div.classList.add('collect');
       div.innerHTML = `
-      
-      <h3>Мета</h3><span>-</span><h3>${collect.title}</h3
+      <h3>Мета</h3><span class="dash">-</span><h3>${collect.title}</h3
+      <p>Загальна сума збору</p><span class="dash">-</span>
       <span>₴</span>
       <span id="collectAmount-input">${collect.amount}</span>
-      
       `;
       this.collectList.appendChild(div);
     }
@@ -161,6 +160,11 @@ class UI {
       this.itemList = tempList;
       this.showBalance();
     }
+    // analytic chart.js
+    
+ 
+    
+
   }
   
   function eventListeners(){
@@ -189,6 +193,8 @@ class UI {
       event.preventDefault();
       ui.submitCollectForm();
     })
+
+    
   }
   
   document.addEventListener('DOMContentLoaded', function(){
@@ -196,26 +202,29 @@ class UI {
   })
 
   // Chart.js
+  let budgetAnalytic = UI.budgetAmount;
   let AnalyticAmount = document.getElementById('button-analytic');
-    AnalyticAmount.addEventListener('click', function(){
-      let labelName = ['Дохід','Витрати','Збір'];
-      let dataAmount = [150,100,40];
-      let ctx = document.getElementById('myChart').getContext('2d');
-      let myChart = new Chart(ctx, {
-          type: 'doughnut',
-          data : {
-        labels: labelName,
-        datasets: [{
-          label: 'Аналітика бюджету',
-          data: dataAmount,
-          backgroundColor: [
-            'rgb(50,205,50)',
-            'rgb(255, 99, 132)',
-            'rgb(65,105,225)'
-          ],
-          hoverOffset: 4,
-        }]
-      }});
-    });
+  AnalyticAmount.addEventListener('click', function(){
+    let labelName = ['Дохід','Витрати','Збір'];
+    let dataAmount = [150,100,40];
+    let ctx = document.getElementById('myChart').getContext('2d');
+    let myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data : {
+      labels: labelName,
+      datasets: [{
+        label: 'Аналітика бюджету',
+        data: dataAmount,
+        backgroundColor: [
+          'rgb(50,205,50)',
+          'rgb(255, 99, 132)',
+          'rgb(65,105,225)'
+        ],
+        hoverOffset: 4,
+      }]
+    }});
+  });
+
+
 
   
