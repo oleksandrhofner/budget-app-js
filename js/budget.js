@@ -225,6 +225,8 @@ class UI {
     }});
   });
 
+  
+  confirm("Are you confirm?");
 
 
   
