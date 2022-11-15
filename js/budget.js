@@ -16,19 +16,28 @@ class UI {
       this.collectInput = document.getElementById("collect-input");
       this.collectAmountInput = document.getElementById("collectAmount-input");
       this.collectList = document.getElementById("collect-list");
+      this.collectInfo = document.getElementById("collect-info");
+      this.collectAmountForm = document.getElementById("collect-amount-form");
+      this.collectInputSum = document.getElementById("collect-input-sum");
+      this.collectTotalSum = document.getElementById("collect-total-sum");
     }
-  
+
     //submit budget method
     submitBudgetForm(){
         const value = this.budgetInput.value;
         if(value === '' || value < 0){
-         console.log('Number can`t be negative or string');
+        alert("Значення не може бути від'ємним!")
       
         } else {
           this.budgetAmount.textContent = value;
           this.budgetInput.value = '';
           this.showBalance();
         }
+        let collectTotalOn = 0;
+        if ( collectTotalOn === 1) {
+          confirm("У вас є мета збору. Чи ви бажаєте відкласти на мету 10% від бюджету?");
+        }
+        
     }
   
     //show balance
@@ -43,8 +52,7 @@ class UI {
       const expenseValue = this.expenseInput.value;
       const amountValue = this.amountInput.value;
       if(expenseValue === '' || amountValue === '' || amountValue < 0){
-        this.expenseFeedback.classList.add('showItem');
-        this.expenseFeedback.innerHTML = `<p>values cannot be empty or negative</p>`;
+       alert("Значення не може бути від'ємним!")
         const self = this;
       } else {
         let amount = parseInt(amountValue);
@@ -88,29 +96,47 @@ class UI {
       
       } else {
         let collectAmount = parseInt(collectAmountValue);
-        this.collectInput = '';
-        this.collectAmountInput = '';
+        this.collectInput.value = '';
+        this.collectAmountInput.value = '';
+
         let collect = {
           title: collectValue,
           amount: collectAmount
         }
+        
         this.addCollect(collect)
+       
       }
       
     }
     // add title and value for collect
     addCollect(collect) {
       const div = document.createElement('div');
-      div.classList.add('collect');
+      div.classList.add('collect-info');
       div.innerHTML = `
       <h3>Мета</h3><span class="dash">-</span><h3>${collect.title}</h3
-      <p>Загальна сума збору</p><span class="dash">-</span>
-      <span>₴</span>
-      <span id="collectAmount-input">${collect.amount}</span>
+      <p>Загальна сума збору: <span>₴</span><span id="collectAmount-input">${collect.amount}</span></p>
+      
       `;
       this.collectList.appendChild(div);
     }
-
+    // collect amount form 
+    submitCollectAmountForm() {
+      const collectAmount = this.collectInputSum.value;
+      if(collectAmount === '' || collectAmount < 0){
+      alert("Значення не може бути від'ємним!")
+    
+      } else {
+        this.collectInputSum.textContent = collectAmount;
+        this.collectInputSum.value = '';
+        this.showCollectSum();
+      }
+    }
+    // show collect sum
+    showCollectSum(){
+      const totalSum = parseInt(this.collectInputSum.textContent);
+      this.collectTotalSum.textContent = totalSum;
+    }
 
     
     //total expense
@@ -172,6 +198,8 @@ class UI {
     const expenseForm = document.getElementById('expense-form');
     const expenseList = document.getElementById('expense-list');
     const collectForm = document.getElementById('collect-form');
+    const collectAmountForm = document.getElementById('collect-amount-form');
+  
 
   
     //new instance of UI Class
@@ -193,40 +221,48 @@ class UI {
       event.preventDefault();
       ui.submitCollectForm();
     })
+    // collect amount form submit
+    collectAmountForm.addEventListener('submit',function(event){
+      event.preventDefault();
+      ui.submitCollectAmountForm();
+    }) 
 
     
   }
   
   document.addEventListener('DOMContentLoaded', function(){
     eventListeners();
+    // $('#collect-amount-sum').hide();
   })
 
   // Chart.js
-  let budgetAnalytic = UI.budgetAmount;
   let AnalyticAmount = document.getElementById('button-analytic');
   AnalyticAmount.addEventListener('click', function(){
-    let labelName = ['Дохід','Витрати','Збір'];
-    let dataAmount = [150,100,40];
-    let ctx = document.getElementById('myChart').getContext('2d');
-    let myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data : {
-      labels: labelName,
-      datasets: [{
-        label: 'Аналітика бюджету',
-        data: dataAmount,
-        backgroundColor: [
-          'rgb(50,205,50)',
-          'rgb(255, 99, 132)',
-          'rgb(65,105,225)'
-        ],
-        hoverOffset: 4,
-      }]
-    }});
-  });
+  let labelName = ['Дохід','Витрати','Збір'];
+  let dataAmount = [100,100,40];
+  let ctx = document.getElementById('myChart').getContext('2d');
+  let myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data : {
+    labels: labelName,
+    datasets: [{
+      label: 'Аналітика бюджету',
+      data: dataAmount,
+      backgroundColor: [
+        'rgb(50,205,50)',
+        'rgb(255, 99, 132)',
+        'rgb(65,105,225)'
+      ],
+      hoverOffset: 4,
+    }]
+  }});
+});
 
-  
-  confirm("Are you confirm?");
+  const reloadPage = function() {
+    confirm("Are you confirm?");
+  }
+  // reloadPage();
+
 
 
   
