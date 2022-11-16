@@ -52,20 +52,20 @@
         <form id="budget-form" class="budget-form">
             <h5>Введіть свій бюджет</h5>
             <div class="form-input">
-                <input type="number" class="budget-input" id="budget-input">
+                <input type="number" class="budget-input form-control" id="budget-input">
             </div>
-            <button type="submit" class="budget-submit" id="budget-submit">Ввести дані</button>
+            <button type="submit" class="budget-submit btn btn-primary" id="budget-submit">Ввести дані</button>
         </form>
         <form id="expense-form" class="expense-form">
             <h5>Ведіть назву ваших витрат</h5>
             <div class="form-group">
-                <input type="text" class="expense-input" id="expense-input">
+                <input type="text" class="expense-input form-control" id="expense-input">
             </div>
             <h5>Введіть суму витрат</h5>
             <div class="form-group">
-                <input type="number" class="expense-input" id="expenseAmount-input">
+                <input type="number" class="expense-input form-control" id="expenseAmount-input">
             </div>
-            <button type="submit" class="expense-submit" id="expense-submit">Додати витрати</button>
+            <button type="submit" class="expense-submit btn btn-primary" id="expense-submit">Додати витрати</button>
         </form>
        </div>
 
@@ -76,13 +76,13 @@
     <form id="collect-form" class="collect-form">
         <h5>Введіть назву мети збору</h5>
         <div class="form-group">
-            <input type="text" class="collect-input" id="collect-input">
+            <input type="text" class="collect-input form-control" id="collect-input">
         </div>
         <h5>Введіть суму збору</h5>
         <div class="form-group">
-            <input type="number" class="collect-input" id="collectAmount-input">
+            <input type="number" class="collect-input form-control" id="collectAmount-input">
         </div>
-        <button type="submit" class="collect-submit" id="collect-submit">Додати збір</button>
+        <button type="submit" class="collect-submit btn btn-primary" id="collect-submit">Додати збір</button>
     </form>
     <div class="collect-list" id="collect-list">
        
@@ -93,9 +93,9 @@
     <form id="collect-amount-form" class="collect-amount-form">
         <h5>Введіть суму поповнення збору</h5>
         <div class="form-input">
-            <input type="number" class="collect-input-sum" id="collect-input-sum">
+            <input type="number" class="collect-input-sum form-control" id="collect-input-sum">
         </div>
-        <button type="submit" class="collect-amount-submit" id="collect-amount-submit">Поповнити збір</button>
+        <button type="submit" class="collect-amount-submit btn btn-primary" id="collect-amount-submit">Поповнити збір</button>
         </form>
 </div>
 <!-- Кінець сторінки Збір -->
@@ -114,8 +114,8 @@
     </div>
     </div>
       <div class="chart-form">
-        <button type="submit" class="button-analytic" id="button-analytic">Показати аналітику</button>
-        <button id="reset-analytic">Оновити</button>
+        <button type="submit" class="button-analytic btn btn-primary" id="button-analytic">Показати аналітику</button>
+        <button class="btn btn-primary" id="reset-analytic">Оновити</button>
         <canvas class="myChart" id="myChart"></canvas>
       </div>
     </div>
