@@ -37,7 +37,8 @@ class UI {
         if ( collectTotalOn === 1) {
           confirm("У вас є мета збору. Чи ви бажаєте відкласти на мету 10% від бюджету?");
         }
-        
+        let AnalyticBudgetValue = value;
+        this.clickAnalyticForm(AnalyticBudgetValue,this.showCollectSum.AnalyticCollectValue);
     }
   
     //show balance
@@ -130,12 +131,16 @@ class UI {
         this.collectInputSum.textContent = collectAmount;
         this.collectInputSum.value = '';
         this.showCollectSum();
+        
       }
     }
     // show collect sum
     showCollectSum(){
       const totalSum = parseInt(this.collectInputSum.textContent);
       this.collectTotalSum.textContent = totalSum;
+
+      let AnalyticCollectValue = totalSum;
+      this.clickAnalyticForm(this.submitBudgetForm.AnalyticBudgetValue,AnalyticCollectValue);
     }
 
     
@@ -147,9 +152,9 @@ class UI {
           acc += curr.amount;
           return acc;
         }, 0)
-      } 
-      this.expenseAmount.textContent = total;
-      return total;
+      }
+        this.expenseAmount.textContent = total;
+        return total;
     }
     
     //edit expense
@@ -187,7 +192,25 @@ class UI {
       this.showBalance();
     }
     // analytic chart.js
-    
+    clickAnalyticForm(AnalyticBudgetValue,AnalyticCollectValue){
+      let labelName = ['Дохід','Збір'];
+      let dataAmount = [AnalyticBudgetValue,AnalyticCollectValue];
+      let ctx = document.getElementById('myChart').getContext('2d');
+      let myChart = new Chart(ctx, {
+          type: 'doughnut',
+          data : {
+        labels: labelName,
+        datasets: [{
+          label: 'Аналітика бюджету',
+          data: dataAmount,
+          backgroundColor: [
+            'rgb(50,205,50)',
+            'rgb(65,105,225)'
+          ],
+          hoverOffset: 4,
+        }]
+      }});
+    }
  
     
 
@@ -199,6 +222,7 @@ class UI {
     const expenseList = document.getElementById('expense-list');
     const collectForm = document.getElementById('collect-form');
     const collectAmountForm = document.getElementById('collect-amount-form');
+    const analyticForm = document.getElementById('button-analytic');
   
 
   
@@ -226,37 +250,21 @@ class UI {
       event.preventDefault();
       ui.submitCollectAmountForm();
     }) 
+    analyticForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      ui.clickAnalyticForm();
+    })
 
     
   }
   
   document.addEventListener('DOMContentLoaded', function(){
     eventListeners();
+   
     // $('#collect-amount-sum').hide();
   })
 
-  // Chart.js
-  let AnalyticAmount = document.getElementById('button-analytic');
-  AnalyticAmount.addEventListener('click', function(){
-  let labelName = ['Дохід','Витрати','Збір'];
-  let dataAmount = [100,100,40];
-  let ctx = document.getElementById('myChart').getContext('2d');
-  let myChart = new Chart(ctx, {
-      type: 'doughnut',
-      data : {
-    labels: labelName,
-    datasets: [{
-      label: 'Аналітика бюджету',
-      data: dataAmount,
-      backgroundColor: [
-        'rgb(50,205,50)',
-        'rgb(255, 99, 132)',
-        'rgb(65,105,225)'
-      ],
-      hoverOffset: 4,
-    }]
-  }});
-});
+
 
   const reloadPage = function() {
     confirm("Are you confirm?");
