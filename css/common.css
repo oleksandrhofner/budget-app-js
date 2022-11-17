@@ -1,21 +1,34 @@
 ul {
-    list-style: none;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position:static;
+	justify-content: space-around;
+	text-align: center;
+    text-decoration: none;
+
 
 }
+
+
 a {
-    text-decoration: none;
-    padding: 0 10px;
+    
+        color: #8f8f8f;
+        font-size: 24px;
+        font-weight: 400;
+        transition: all 0.5s ease-in-out;
+        position: relative;
+        text-transform: uppercase;
+}
+a:hover{
+    background-color: #e25707;
 }
 
 * {
     scroll-behavior: smooth;
+    list-style-type: none;
     /* border: 1px solid green; */
 }
 body {
+    max-width: 1200px;
+    margin: auto;
     background-color: #43506C;
     color: #e9e9eb;
 }

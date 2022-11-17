@@ -2,8 +2,21 @@
 .btn {
     background-color: green;
 }
+.btn:hover {
+    background-color: rgba(255, 149, 0, 0.733);
+}
 .form-control {
     width: 200px;
+}
+
+/* Menu container */
+.menu-container{
+    margin: 20px 0;
+} 
+
+/* Info container */
+.info-container {
+    margin: 100px 0;
 }
 .info-title {
     display: flex;
@@ -42,5 +55,6 @@
 
 /* Analytic */
 .chart-form {
+    margin: auto;
     width: 500px;
 }
