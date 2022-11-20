@@ -32,3 +32,10 @@ body {
     background-color: #43506C;
     color: #e9e9eb;
 }
+
+.showGreen{
+    color: green;
+}
+.showRed{
+    color:red;
+}

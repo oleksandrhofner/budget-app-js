@@ -3,6 +3,7 @@ class Budget {
       this.budgetForm = document.getElementById("budget-form");
       this.budgetInput = document.getElementById("budget-input");
       this.budgetAmount = document.getElementById("budget-amount");
+      this.expenses = document.getElementById("expenses");
       this.expenseAmount = document.getElementById("expense-amount");
       this.balance = document.getElementById("balance");
       this.balanceAmount = document.getElementById("balance-amount");
@@ -46,6 +47,9 @@ class Budget {
       const expense = this.totalExpense();
       const total = parseInt(this.budgetAmount.textContent) - expense;
       this.balanceAmount.textContent = total;
+      if(total > 0){
+        this.balance.classList.add('showGreen');
+      }
     
     }
     //submit expense form
@@ -54,7 +58,6 @@ class Budget {
       const amountValue = this.amountInput.value;
       if(expenseValue === '' || amountValue === '' || amountValue < 0){
        alert("Значення не може бути від'ємним!")
-        const self = this;
       } else {
         let amount = parseInt(amountValue);
         this.expenseInput.value = '';
@@ -69,6 +72,9 @@ class Budget {
         this.itemList.push(expense);
         this.addExpense(expense);
         this.showBalance();
+        if(expense.amount > 0) {
+          this.expenses.classList.add('showRed');
+        }
   
       }
     
@@ -82,7 +88,7 @@ class Budget {
       <h5 class="expense-title list-item">- ${expense.title}</h5>
       </div>
       <div class="expense-title-amount">
-      <h5 class="expense-amount  list-item">$${expense.amount}</h5>
+      <h5 class="expense-amount  list-item">-${expense.amount}₴</h5>
       </div>
       `;
      this.expenseList.appendChild(div);
@@ -154,7 +160,7 @@ class Budget {
         }, 0)
       }
         this.expenseAmount.textContent = total;
-        return total;
+       return total;
     }
     
     //edit expense
