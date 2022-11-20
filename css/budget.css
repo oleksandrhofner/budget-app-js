@@ -1,9 +1,10 @@
 
 .btn {
     background-color: green;
+    border-style: none;
 }
 .btn:hover {
-    background-color: rgba(255, 149, 0, 0.733);
+    background-color: black;
 }
 .form-control {
     width: 200px;
@@ -22,11 +23,53 @@
     display: flex;
     justify-content: space-around;
     text-align: center;
+   
 }
 
+.budget-info {
+    width: 200px;
+    background-color: black;
+    border-radius: 20px;
+}
+
+.expenses-info {
+    width: 200px;
+    background-color: black;
+    border-radius: 20px;
+}
+
+.balance-info {
+    width: 200px;
+    background-color: black;
+    border-radius: 20px;
+}
+
+.budget-form {
+    width: 400px;
+    background-color: tomato;
+    border-radius: 20px;
+    padding: 50px 30px 30px 30px;
+}
+.budget-form .budget-submit {
+    margin-top: 10px;
+}
+.expense-form {
+    width: 400px;
+    background-color: tomato;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.expense-form .Expenses-sum {
+    padding-top: 20px;
+}
+.expense-form .expense-submit {
+    margin-top: 10px;
+}
 .form-container {
     display: flex;
     justify-content: space-around;
+    margin-bottom: 150px;
 }
 
 .collect-container {
