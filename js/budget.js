@@ -1,4 +1,4 @@
-class UI {
+class Budget {
     constructor() {
       this.budgetForm = document.getElementById("budget-form");
       this.budgetInput = document.getElementById("budget-input");
@@ -226,33 +226,33 @@ class UI {
   
 
   
-    //new instance of UI Class
-    const ui = new UI();
+    //new instance of Budget Class
+    const budget = new Budget();
     
     //budget form submit
     budgetForm.addEventListener('submit', function(event){
       event.preventDefault();
-      ui.submitBudgetForm();
+      budget.submitBudgetForm();
     })
     //expense form submit
     expenseForm.addEventListener('submit', function(event){
       event.preventDefault();
-      ui.submitExpenseForm();
+      budget.submitExpenseForm();
   
     })
     // collect from submit
     collectForm.addEventListener('submit',function(event){
       event.preventDefault();
-      ui.submitCollectForm();
+      budget.submitCollectForm();
     })
     // collect amount form submit
     collectAmountForm.addEventListener('submit',function(event){
       event.preventDefault();
-      ui.submitCollectAmountForm();
+      budget.submitCollectAmountForm();
     }) 
     analyticForm.addEventListener('submit', function(event) {
       event.preventDefault();
-      ui.clickAnalyticForm();
+      budget.clickAnalyticForm();
     })
 
     
