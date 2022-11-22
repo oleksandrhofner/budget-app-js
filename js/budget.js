@@ -121,7 +121,7 @@ class Budget {
       const div = document.createElement('div');
       div.classList.add('collect-info');
       div.innerHTML = `
-      <h3>Мета</h3><span class="dash">-</span><h3>${collect.title}</h3
+      <h3>Мета</h3><span class="dash">-</span><h3>${collect.title}</h3>
       <p>Загальна сума збору: <span>₴</span><span id="collectAmount-input">${collect.amount}</span></p>
       
       `;
@@ -216,8 +216,13 @@ class Budget {
           hoverOffset: 4,
         }]
       }});
+    this.reloadAnalyticForm(myChart, AnalyticBudgetValue, AnalyticCollectValue);
     }
  
+    reloadAnalyticForm(myChart, AnalyticBudgetValue, AnalyticCollectValue) {
+      // myChart.destroy();
+
+    }
     
 
   }
@@ -229,6 +234,7 @@ class Budget {
     const collectForm = document.getElementById('collect-form');
     const collectAmountForm = document.getElementById('collect-amount-form');
     const analyticForm = document.getElementById('button-analytic');
+    const reloadAnalytic = document.getElementById('reload-analytic');
   
 
   
@@ -256,12 +262,18 @@ class Budget {
       event.preventDefault();
       budget.submitCollectAmountForm();
     }) 
+
     analyticForm.addEventListener('submit', function(event) {
       event.preventDefault();
       budget.clickAnalyticForm();
     })
 
-    
+   reloadAnalytic.addEventListener('click', function(event) {
+      event.preventDefault();
+      budget.reloadAnalyticForm();
+   })
+
+
   }
   
   document.addEventListener('DOMContentLoaded', function(){

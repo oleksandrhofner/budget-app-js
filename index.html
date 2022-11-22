@@ -71,9 +71,12 @@
 
     <!-- Кінець сторінки розрахунку бюджету -->
 <!-- Початок сторінки Збір -->
-<h3 id="collect-title">Збір</h3>
+<h3 id="collect-title" class="collect-title">Збір</h3>
 <div class="collect-form">
-    <form id="collect-form" class="collect-form">
+   
+   <div class="collect-input-form">
+
+    <form id="collect-form" class="collect-form-input">
         <h5>Введіть назву мети збору</h5>
         <div class="form-group">
             <input type="text" class="collect-input form-control" id="collect-input">
@@ -81,15 +84,21 @@
         <h5>Введіть суму збору</h5>
         <div class="form-group">
             <input type="number" class="collect-input form-control" id="collectAmount-input">
+            <button type="submit" class="collect-submit btn btn-primary" id="collect-submit">Додати збір</button>
         </div>
-        <button type="submit" class="collect-submit btn btn-primary" id="collect-submit">Додати збір</button>
+       
     </form>
+   </div>
+   <div class="collect-info-amount">
     <div class="collect-list" id="collect-list">
        
+        <div class="collect-total-sum-info" id="collect-total-sum-info">
+            <p class="collected-info">Зібрано: <span>₴ </span><span id="collect-total-sum">0</span></p>
+        </div>
     </div>
-    <div class="collect-total-sum-info" id="collect-total-sum-info">
-        <p>Зібрано: <span>₴ </span><span id="collect-total-sum">0</span></p>
-    </div>
+    
+   </div>
+   <div class="collect-amount">
     <form id="collect-amount-form" class="collect-amount-form">
         <h5>Введіть суму поповнення збору</h5>
         <div class="form-input">
@@ -97,6 +106,7 @@
         </div>
         <button type="submit" class="collect-amount-submit btn btn-primary" id="collect-amount-submit">Поповнити збір</button>
         </form>
+   </div>
 </div>
 <!-- Кінець сторінки Збір -->
 <!-- Початок сторінки Аналітика -->
@@ -114,8 +124,8 @@
     </div>
     </div>
       <div class="chart-form">
-        <button type="submit" class="button-analytic btn btn-primary" id="button-analytic">Показати аналітику</button>
-        <button class="btn btn-primary" id="reset-analytic">Оновити</button>
+        <button type="click" class="btn" id="button-analytic"></button>
+        <button class="btn btn-primary" id="reload-analytic">Оновити</button>
         <canvas class="myChart" id="myChart"></canvas>
       </div>
     </div>
