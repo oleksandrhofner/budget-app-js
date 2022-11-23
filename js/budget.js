@@ -165,8 +165,7 @@ class Budget {
 
     // analytic chart.js
     clickAnalyticForm(AnalyticBudgetValue,AnalyticCollectValue){
-      let labelName = ['Дохід','Збір'];
-      let dataAmount = [AnalyticBudgetValue,AnalyticCollectValue];
+      let labelName = ['Бюджет','Збір'];
       let myChart = null;
       let ctx = document.getElementById('myChart').getContext('2d');
       myChart = new Chart(ctx, {
@@ -174,8 +173,8 @@ class Budget {
           data : {
         labels: labelName,
         datasets: [{
-          label: 'Аналітика бюджету',
-          data: dataAmount,
+          label: 'Аналітика',
+          data: [AnalyticBudgetValue,AnalyticCollectValue],
           backgroundColor: [
             'rgb(50,205,50)',
             'rgb(65,105,225)'
@@ -183,14 +182,13 @@ class Budget {
           hoverOffset: 4,
         }]
       }});
-      if (myChart != null) {
-        myChart.destroy(); 
-        } 
     this.reloadAnalyticForm(myChart);
     }
 //  analytic reload button
-    reloadAnalyticForm(myChart) { 
-      myChart.update();
+    reloadAnalyticForm(myChart, AnalyticBudgetValue,AnalyticCollectValue) { 
+      myChart.data.datasets[0].data[0] = AnalyticBudgetValue; 
+      myChart.data.datasets[0].data[1] = AnalyticCollectValue; 
+      // myChart.update();
 
     }
     
