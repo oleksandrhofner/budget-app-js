@@ -80,7 +80,7 @@
     margin: 60px 20px;
 }
 
-.collected-info {
+.collected-info, .collect-general-amount {
     text-align: center;
     font-weight: 700;
     width: 150px;
@@ -88,9 +88,23 @@
     padding: 10px;
     border-radius: 20px;
 }
+.dash {
+    font-size: 20px;
+}
 .collect-info {
+    width: 250px;
 display: flex;
+flex-wrap: wrap;
 gap: 30px;
+}
+
+.collect-info-title {
+    display: flex;
+    width: 500px;
+    background-color: tomato;
+    border-radius: 20px;
+    padding: 30px 30px;
+    gap: 20px;
 }
 
 .collect-form-input {

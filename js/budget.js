@@ -121,8 +121,8 @@ class Budget {
       const div = document.createElement('div');
       div.classList.add('collect-info');
       div.innerHTML = `
-      <h3>Мета</h3><span class="dash">-</span><h3>${collect.title}</h3>
-      <p>Загальна сума збору: <span>₴</span><span id="collectAmount-input">${collect.amount}</span></p>
+      <div class="collect-info-title"><h3>Мета</h3><span class="dash">:</span><h3>${collect.title}</h3></div>
+      <p class="collect-general-amount">Загальна сума збору: <span>₴</span><span id="collectAmount-input">${collect.amount}</span></p>
       
       `;
       this.collectList.appendChild(div);
