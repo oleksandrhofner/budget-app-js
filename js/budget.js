@@ -140,7 +140,7 @@ class Budget {
         
       }
     }
-    // show collect sum
+    // show collect total sum
     showCollectSum(){
       const totalSum = parseInt(this.collectInputSum.textContent);
       this.collectTotalSum.textContent = totalSum;
@@ -162,47 +162,14 @@ class Budget {
         this.expenseAmount.textContent = total;
        return total;
     }
-    
-    //edit expense
-    editExpense(element){
-      let id = parseInt(element.dataset.id);
-      let parent = element.parentElement.parentElement.parentElement;
-      //remove from DOM
-      this.expenseList.removeChild(parent);
-      //remove from the list
-      let expense = this.itemList.filter(function(item){
-        return item.id === id;
-      })
-      //show values
-      this.expenseInput.value = expense[0].title;
-      this.amountInput.value = expense[0].amount;
-      //remove from the list
-      let tempList = this.itemList.filter(function(item){
-        return item.id !== id;
-      })
-      this.itemList = tempList;
-      this.showBalance();
-    }
-  
-    //delete expense
-    deleteExpense(element){
-      let id = parseInt(element.dataset.id);
-      let parent = element.parentElement.parentElement.parentElement;
-      //remove from DOM
-      this.expenseList.removeChild(parent);
-      //remove from the list
-      let tempList = this.itemList.filter(function(item){
-        return item.id !== id;
-      })
-      this.itemList = tempList;
-      this.showBalance();
-    }
+
     // analytic chart.js
     clickAnalyticForm(AnalyticBudgetValue,AnalyticCollectValue){
       let labelName = ['Дохід','Збір'];
       let dataAmount = [AnalyticBudgetValue,AnalyticCollectValue];
+      let myChart = null;
       let ctx = document.getElementById('myChart').getContext('2d');
-      let myChart = new Chart(ctx, {
+      myChart = new Chart(ctx, {
           type: 'doughnut',
           data : {
         labels: labelName,
@@ -216,17 +183,20 @@ class Budget {
           hoverOffset: 4,
         }]
       }});
-    this.reloadAnalyticForm(myChart, AnalyticBudgetValue, AnalyticCollectValue);
+      if (myChart != null) {
+        myChart.destroy(); 
+        } 
+    this.reloadAnalyticForm(myChart);
     }
- 
-    reloadAnalyticForm(myChart, AnalyticBudgetValue, AnalyticCollectValue) {
-      // myChart.destroy();
+//  analytic reload button
+    reloadAnalyticForm(myChart) { 
+      myChart.update();
 
     }
     
 
   }
-  
+  // events functions
   function eventListeners(){
     const budgetForm = document.getElementById('budget-form');
     const expenseForm = document.getElementById('expense-form');
@@ -235,8 +205,6 @@ class Budget {
     const collectAmountForm = document.getElementById('collect-amount-form');
     const analyticForm = document.getElementById('button-analytic');
     const reloadAnalytic = document.getElementById('reload-analytic');
-  
-
   
     //new instance of Budget Class
     const budget = new Budget();
@@ -268,6 +236,7 @@ class Budget {
       budget.clickAnalyticForm();
     })
 
+    // reload analytic chart.js
    reloadAnalytic.addEventListener('click', function(event) {
       event.preventDefault();
       budget.reloadAnalyticForm();
@@ -278,17 +247,4 @@ class Budget {
   
   document.addEventListener('DOMContentLoaded', function(){
     eventListeners();
-   
-    // $('#collect-amount-sum').hide();
   })
-
-
-
-  const reloadPage = function() {
-    confirm("Are you confirm?");
-  }
-  // reloadPage();
-
-
-
-  
