@@ -145,3 +145,17 @@ gap: 30px;
     margin: auto;
     width: 500px;
 }
+
+
+/* Footer */
+.site-footer{
+    background-color: black;
+    margin-top: 100px;
+}
+.footer-container {
+    max-width: 1200px;
+    text-align: center;
+    margin-top: 100px;
+    margin: auto;
+    padding: 50px 0;
+}

@@ -31,12 +31,21 @@ a:hover{
     /* border: 1px solid green; */
 }
 body {
-    max-width: 1200px;
-    margin: auto;
     background-color: #43506C;
     color: #e9e9eb;
 }
+main {
+    max-width: 1200px;
+    margin: auto;
+}
+header {
+    max-width: 1200px;
+    margin: auto;
+}
 
+.container{
+    max-width: 1200px;
+}
 .showGreen{
     color: green;
 }
