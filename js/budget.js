@@ -21,6 +21,9 @@ class Budget {
       this.collectAmountForm = document.getElementById("collect-amount-form");
       this.collectInputSum = document.getElementById("collect-input-sum");
       this.collectTotalSum = document.getElementById("collect-total-sum");
+      this.myChart = this.clickAnalyticForm();
+        this.AnalyticBudgetValue = false;
+        this.AnalyticCollectValue = false;
     }
 
     //submit budget method
@@ -38,8 +41,8 @@ class Budget {
         if ( collectTotalOn === 1) {
           confirm("У вас є мета збору. Чи ви бажаєте відкласти на мету 10% від бюджету?");
         }
-        let AnalyticBudgetValue = value;
-        this.clickAnalyticForm(AnalyticBudgetValue,this.showCollectSum.AnalyticCollectValue);
+        this.AnalyticBudgetValue = value;
+        // this.clickAnalyticForm(AnalyticBudgetValue,this.showCollectSum.AnalyticCollectValue);
     }
   
     //show balance
@@ -145,8 +148,8 @@ class Budget {
       const totalSum = parseInt(this.collectInputSum.textContent);
       this.collectTotalSum.textContent = totalSum;
 
-      let AnalyticCollectValue = totalSum;
-      this.clickAnalyticForm(this.submitBudgetForm.AnalyticBudgetValue,AnalyticCollectValue);
+      this.AnalyticCollectValue = totalSum;
+      // this.clickAnalyticForm(this.submitBudgetForm.AnalyticBudgetValue,AnalyticCollectValue);
     }
 
     
@@ -164,17 +167,20 @@ class Budget {
     }
 
     // analytic chart.js
-    clickAnalyticForm(AnalyticBudgetValue,AnalyticCollectValue){
+    clickAnalyticForm(){
       let labelName = ['Бюджет','Збір'];
-      let myChart = null;
       let ctx = document.getElementById('myChart').getContext('2d');
-      myChart = new Chart(ctx, {
+      // if(!this.AnalyticBudgetValue || !this.AnalyticCollectValue){
+      //     return null;
+      // }
+
+      return new Chart(ctx, {
           type: 'doughnut',
           data : {
         labels: labelName,
         datasets: [{
           label: 'Аналітика',
-          data: [AnalyticBudgetValue,AnalyticCollectValue],
+          data: [this.AnalyticBudgetValue, this.AnalyticCollectValue],
           backgroundColor: [
             'rgb(50,205,50)',
             'rgb(65,105,225)'
@@ -182,14 +188,17 @@ class Budget {
           hoverOffset: 4,
         }]
       }});
-    this.reloadAnalyticForm(myChart);
     }
 //  analytic reload button
-    reloadAnalyticForm(myChart, AnalyticBudgetValue,AnalyticCollectValue) { 
-      myChart.data.datasets[0].data[0] = AnalyticBudgetValue; 
-      myChart.data.datasets[0].data[1] = AnalyticCollectValue; 
-      // myChart.update();
+    reloadAnalyticForm() {
+        if(!this.myChart){
+            this.myChart = this.clickAnalyticForm();
+            return;
+        }
 
+        this.myChart.data.datasets[0].data[0] = this.AnalyticBudgetValue;
+        this.myChart.data.datasets[0].data[1] = this.AnalyticCollectValue;
+        this.myChart.update();
     }
     
 
@@ -229,7 +238,7 @@ class Budget {
       budget.submitCollectAmountForm();
     }) 
 
-    analyticForm.addEventListener('submit', function(event) {
+    analyticForm.addEventListener('click', function(event) {
       event.preventDefault();
       budget.clickAnalyticForm();
     })
