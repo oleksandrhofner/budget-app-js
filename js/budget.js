@@ -26,7 +26,7 @@ class Budget {
         this.AnalyticCollectValue = false;
     }
 
-    //submit budget method
+    //Форма бюджету
     submitBudgetForm(){
         const value = this.budgetInput.value;
         if(value === '' || value < 0){
@@ -37,15 +37,10 @@ class Budget {
           this.budgetInput.value = '';
           this.showBalance();
         }
-        let collectTotalOn = 0;
-        if ( collectTotalOn === 1) {
-          confirm("У вас є мета збору. Чи ви бажаєте відкласти на мету 10% від бюджету?");
-        }
         this.AnalyticBudgetValue = value;
-        // this.clickAnalyticForm(AnalyticBudgetValue,this.showCollectSum.AnalyticCollectValue);
     }
   
-    //show balance
+    //показати залишок на рахунку
     showBalance(){
       const expense = this.totalExpense();
       const total = parseInt(this.budgetAmount.textContent) - expense;
@@ -55,7 +50,7 @@ class Budget {
       }
     
     }
-    //submit expense form
+    //Форма витрат
     submitExpenseForm(){
       const expenseValue = this.expenseInput.value;
       const amountValue = this.amountInput.value;
@@ -82,7 +77,7 @@ class Budget {
       }
     
     }
-    //add expense
+    //додати витрати
     addExpense(expense){
       const div = document.createElement('div');
       div.classList.add('expense-list');
@@ -97,7 +92,7 @@ class Budget {
      this.expenseList.appendChild(div);
     }
   
-// submit collect method
+// Форма збору назви і суми
     submitCollectForm(){
       const collectValue = this.collectInput.value;
       const collectAmountValue = this.collectAmountInput.value;
@@ -119,7 +114,7 @@ class Budget {
       }
       
     }
-    // add title and value for collect
+    // назва і сума збору
     addCollect(collect) {
       const div = document.createElement('div');
       div.classList.add('collect-info');
@@ -130,7 +125,7 @@ class Budget {
       `;
       this.collectList.appendChild(div);
     }
-    // collect amount form 
+    // форма поповнення збору 
     submitCollectAmountForm() {
       const collectAmount = this.collectInputSum.value;
       if(collectAmount === '' || collectAmount < 0){
@@ -140,20 +135,17 @@ class Budget {
         this.collectInputSum.textContent = collectAmount;
         this.collectInputSum.value = '';
         this.showCollectSum();
-        
       }
     }
-    // show collect total sum
+    // показати суму поповнення збору
     showCollectSum(){
       const totalSum = parseInt(this.collectInputSum.textContent);
       this.collectTotalSum.textContent = totalSum;
-
       this.AnalyticCollectValue = totalSum;
-      // this.clickAnalyticForm(this.submitBudgetForm.AnalyticBudgetValue,AnalyticCollectValue);
     }
 
     
-    //total expense
+    //Загальні витрати
     totalExpense(){
       let total = 0;
       if(this.itemList.length > 0){
@@ -170,10 +162,6 @@ class Budget {
     clickAnalyticForm(){
       let labelName = ['Бюджет','Збір'];
       let ctx = document.getElementById('myChart').getContext('2d');
-      // if(!this.AnalyticBudgetValue || !this.AnalyticCollectValue){
-      //     return null;
-      // }
-
       return new Chart(ctx, {
           type: 'doughnut',
           data : {
@@ -189,7 +177,7 @@ class Budget {
         }]
       }});
     }
-//  analytic reload button
+//  подія оновлення аналітики
     reloadAnalyticForm() {
         if(!this.myChart){
             this.myChart = this.clickAnalyticForm();
@@ -203,7 +191,7 @@ class Budget {
     
 
   }
-  // events functions
+  // функції події
   function eventListeners(){
     const budgetForm = document.getElementById('budget-form');
     const expenseForm = document.getElementById('expense-form');
@@ -213,26 +201,25 @@ class Budget {
     const analyticForm = document.getElementById('button-analytic');
     const reloadAnalytic = document.getElementById('reload-analytic');
   
-    //new instance of Budget Class
+    //новий екземпляр класу Budget
     const budget = new Budget();
     
-    //budget form submit
+    //Форма бюджет  
     budgetForm.addEventListener('submit', function(event){
       event.preventDefault();
       budget.submitBudgetForm();
     })
-    //expense form submit
+    //Форма витрат
     expenseForm.addEventListener('submit', function(event){
       event.preventDefault();
       budget.submitExpenseForm();
-  
     })
-    // collect from submit
+    // Форма збору
     collectForm.addEventListener('submit',function(event){
       event.preventDefault();
       budget.submitCollectForm();
     })
-    // collect amount form submit
+    // Форма суми збору
     collectAmountForm.addEventListener('submit',function(event){
       event.preventDefault();
       budget.submitCollectAmountForm();
@@ -243,7 +230,7 @@ class Budget {
       budget.clickAnalyticForm();
     })
 
-    // reload analytic chart.js
+    // оновлення аналітики
    reloadAnalytic.addEventListener('click', function(event) {
       event.preventDefault();
       budget.reloadAnalyticForm();

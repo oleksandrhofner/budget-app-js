@@ -53,6 +53,7 @@
 .budget-form .budget-submit {
     margin-top: 10px;
 }
+/* expense */
 .expense-form {
     width: 400px;
     background-color: tomato;
@@ -71,9 +72,7 @@
     justify-content: space-around;
     margin-bottom: 150px;
 }
-
-
-
+/* Collect */
 .collect-form{
     display: flex;
     justify-content: space-around;
@@ -128,25 +127,19 @@ gap: 30px;
     justify-content: space-between;
 }
 
-.expense-list {
+.expense-list-container {
     margin: auto;
     width: 400px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     gap: 50px;
 }
-
-
-
-
-
 /* Analytic */
 .chart-form {
     margin: auto;
     width: 500px;
 }
-
-
 /* Footer */
 .site-footer{
     background-color: black;
