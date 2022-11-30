@@ -30,7 +30,7 @@ class Budget {
     submitBudgetForm(){
         const value = this.budgetInput.value;
         if(value === '' || value < 0){
-        alert("Значення не може бути від'ємним!")
+        alert("Значення не може бути від'ємним!");
       
         } else {
           this.budgetAmount.textContent = value;
@@ -73,10 +73,9 @@ class Budget {
         if(expense.amount > 0) {
           this.expenses.classList.add('showRed');
         }
-  
       }
-    
     }
+
     //додати витрати
     addExpense(expense){
       const div = document.createElement('div');
@@ -92,56 +91,53 @@ class Budget {
      this.expenseList.appendChild(div);
     }
   
-// Форма збору назви і суми
+    // Форма збору назви і суми
     submitCollectForm(){
       const collectValue = this.collectInput.value;
       const collectAmountValue = this.collectAmountInput.value;
       if (collectValue === '' || collectAmountValue === '' || collectAmountValue < 0) {
         alert("Введіть правильне число!");
-      
       } else {
         let collectAmount = parseInt(collectAmountValue);
         this.collectInput.value = '';
         this.collectAmountInput.value = '';
-
         let collect = {
           title: collectValue,
           amount: collectAmount
         }
-        
         this.addCollect(collect)
-       
       }
-      
     }
+
     // назва і сума збору
     addCollect(collect) {
       const div = document.createElement('div');
       div.classList.add('collect-info');
       div.innerHTML = `
       <div class="collect-info-title"><h3>Мета</h3><span class="dash">:</span><h3>${collect.title}</h3></div>
-      <p class="collect-general-amount">Загальна сума збору: <span>₴</span><span id="collectAmount-input">${collect.amount}</span></p>
+      <p class="collect-general-amount">Загальна сума збору: <span>₴ </span><span id="collectAmount-input">${collect.amount}</span></p>
       
       `;
       this.collectList.appendChild(div);
     }
+
     // форма поповнення збору 
     submitCollectAmountForm() {
       const collectAmount = this.collectInputSum.value;
       if(collectAmount === '' || collectAmount < 0){
       alert("Значення не може бути від'ємним!")
-    
       } else {
         this.collectInputSum.textContent = collectAmount;
         this.collectInputSum.value = '';
         this.showCollectSum();
       }
     }
+
     // показати суму поповнення збору
     showCollectSum(){
       const totalSum = parseInt(this.collectInputSum.textContent);
       this.collectTotalSum.textContent = totalSum;
-      this.AnalyticCollectValue = totalSum;
+      this.AnalyticCollectValue += totalSum;
     }
 
     
@@ -158,7 +154,7 @@ class Budget {
        return total;
     }
 
-    // analytic chart.js
+    // форма аналітики з використанням бібліотеки Chart.js
     clickAnalyticForm(){
       let labelName = ['Бюджет','Збір'];
       let ctx = document.getElementById('myChart').getContext('2d');
@@ -177,13 +173,13 @@ class Budget {
         }]
       }});
     }
+
 //  подія оновлення аналітики
     reloadAnalyticForm() {
         if(!this.myChart){
             this.myChart = this.clickAnalyticForm();
             return;
         }
-
         this.myChart.data.datasets[0].data[0] = this.AnalyticBudgetValue;
         this.myChart.data.datasets[0].data[1] = this.AnalyticCollectValue;
         this.myChart.update();
